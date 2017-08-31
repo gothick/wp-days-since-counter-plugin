@@ -88,10 +88,10 @@ class Days_Since_Counter_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Plugin_Name_Loader as all of the hooks are defined
+		 * defined in Days_Since_Counter_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Days_Since_Loader will then create the relationship
+		 * The Days_Since_Counter_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -99,5 +99,53 @@ class Days_Since_Counter_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/days-since-counter-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	
 
+  /**
+	 * All the hooks we want for the New/Edit Post screen
+	 *
+	 * @since    1.0.0
+	 */
+	public function define_post_editing_hooks() {
+    add_action( 'add_meta_boxes', array($this, 'add_meta_boxes') ); 
+	}
+
+	
+  /**
+	 * Hook up our meta box
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_meta_boxes() {
+
+		/**
+		 * This function is provided for demonstration purposes only.
+		 *
+		 * An instance of this class should be passed to the run() function
+		 * defined in Days_Since_Counter_Loader as all of the hooks are defined
+		 * in that particular class.
+		 *
+		 * The Days_Since_Counter_Loader will then create the relationship
+		 * between the defined hooks and the functions defined in this
+		 * class.
+		 */
+
+     add_meta_box('days-since-counter-count-meta-box', __('Day Counter', 'days-since-counter'), array($this, 'counter_meta_box'), 'post', 'side', 'high', null);
+	}
+
+  /**
+	 * Show our meta box
+	 *
+	 * @since    1.0.0
+	 */
+	public function counter_meta_box($post) {
+  	$this_post_date = new DateTime($post->post_date);
+  	$this_post_date->setTime(0, 0, 0);
+    //   	echo $this_post_date->format(DateTime::RFC2822);
+  	// Hardcode for now
+  	$first_post_date = new DateTime('2016-10-22');
+    $interval = $this_post_date->diff($first_post_date, true);
+    printf( esc_html__( 'Days from start date: %d.', 'days-since-counter' ), $interval->days + 1);
+	}
+	
 }

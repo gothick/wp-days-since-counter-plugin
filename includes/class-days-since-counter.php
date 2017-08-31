@@ -156,9 +156,14 @@ class Days_Since_Counter {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		
+		// TODO: Do we need to do this? Or could we just hook add_meta_box(es) directly,
+		// given that we can specify that we want them only for posts/specific post types?
+		$this->loader->add_action( 'load-post.php', $plugin_admin, 'define_post_editing_hooks');
+		$this->loader->add_action( 'load-post-new.php', $plugin_admin, 'define_post_editing_hooks');
 
 	}
-
+	
 	/**
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
