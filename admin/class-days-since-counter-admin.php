@@ -147,5 +147,22 @@ class Days_Since_Counter_Admin {
     $interval = $this_post_date->diff($first_post_date, true);
     printf( esc_html__( 'Days from start date: %d.', 'days-since-counter' ), $interval->days + 1);
 	}
+  /**
+	 * Add submenu under Settings
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_settings_menu() {
+  	add_options_page( 
+  	  __('Days Since Counter Options', 'days-since-counter'), 
+  	  __('Days Since Counter', 'days-since-counter'),
+  	  'manage_options',
+  	  'days-since-counter-options',
+  	  array($this, 'plugin_options')
+    );
+	}
 	
+	public function plugin_options() {
+    require_once plugin_dir_path( __FILE__ ). 'partials/days-since-counter-admin-display.php';
+	}
 }

@@ -13,4 +13,12 @@
  */
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<?php
+if (!current_user_can('manage_options')) {
+	wp_die(__('You do not have sufficient permissions to access this page.'));
+}
+?>
+
+<div class="wrap">
+  <p>Here is where a form would go if I actually had options</p>
+</div>

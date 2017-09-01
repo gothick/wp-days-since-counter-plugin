@@ -161,6 +161,9 @@ class Days_Since_Counter {
 		// given that we can specify that we want them only for posts/specific post types?
 		$this->loader->add_action( 'load-post.php', $plugin_admin, 'define_post_editing_hooks');
 		$this->loader->add_action( 'load-post-new.php', $plugin_admin, 'define_post_editing_hooks');
+		
+		// Our Settings page
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_settings_menu');
 
 	}
 	
