@@ -158,11 +158,27 @@ class Days_Since_Counter_Admin {
   	  __('Days Since Counter', 'days-since-counter'),
   	  'manage_options',
   	  'days-since-counter-options',
-  	  array($this, 'plugin_options')
+  	  array($this, 'options_page')
     );
 	}
 	
-	public function plugin_options() {
+	/**
+   * Output our settings admin page
+   *
+   * @since 1.0.0
+   */
+	public function options_page() {
     require_once plugin_dir_path( __FILE__ ). 'partials/days-since-counter-admin-display.php';
 	}
+
+
+	/**
+   * All our admin settings
+   *
+   * @since 1.0.0
+   */
+	public function register_settings() {
+    register_setting( 'days-since-main-option-group', 'days_since_plugin_start_date' );
+	}	
+	
 }

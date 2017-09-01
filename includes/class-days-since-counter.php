@@ -162,9 +162,9 @@ class Days_Since_Counter {
 		$this->loader->add_action( 'load-post.php', $plugin_admin, 'define_post_editing_hooks');
 		$this->loader->add_action( 'load-post-new.php', $plugin_admin, 'define_post_editing_hooks');
 		
-		// Our Settings page
+		// Our Settings page and associated options
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_settings_menu');
-
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings');
 	}
 	
 	/**
