@@ -154,11 +154,11 @@ class Days_Since_Counter_Admin {
 	 */
 	public function add_settings_menu() {
   	add_options_page( 
-  	  __('Days Since Counter Options', 'days-since-counter'), 
-  	  __('Days Since Counter', 'days-since-counter'),
-  	  'manage_options',
-  	  'days-since-counter-options',
-  	  array($this, 'options_page')
+  	  __('Days Since Counter Options', 'days-since-counter'),   // page title
+  	  __('Days Since Counter', 'days-since-counter'),  // menu title
+  	  'manage_options',             // capability
+  	  'days-since-counter-options', // menu slug
+  	  array($this, 'options_page')  // callback
     );
 	}
 	
@@ -179,6 +179,28 @@ class Days_Since_Counter_Admin {
    */
 	public function register_settings() {
     register_setting( 'days-since-main-option-group', 'days_since_plugin_start_date' );
+    add_settings_section(
+      'days-since-main-option-section', 
+      '', 
+      array($this, 'render_main_option_group'), 
+      'days-since-counter-options' // page
+    );
+    
+    add_settings_field( 
+      'days_since_plugin_start_date',  // id
+      __('Start Date', 'days-since-counter'), // title
+      array($this, 'render_start_date_option'),  // callback
+      'days-since-counter-options', // page
+      'days-since-main-option-section'
+    );
 	}	
+
+  public function render_main_option_group() {
+    // TODO 
+  }
+  
+  public function render_start_date_option() {
+    require_once plugin_dir_path( __FILE__ ). 'partials/start-date.php';
+  }
 	
 }

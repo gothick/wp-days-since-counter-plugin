@@ -1,0 +1,2 @@
+<input type="text" name="days_since_plugin_start_date" value="<?php echo esc_attr( get_option('days_since_plugin_start_date') ); ?>" />
+<br /><span class='description'><?php _e('The Edit/New Post page will display the number of days from this date to the post date.', 'days-since-counter') ?></span>
