@@ -74,6 +74,9 @@ class Days_Since_Counter_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/days-since-counter-admin.css', array(), $this->version, 'all' );
+		// wp_enqueue_style( 'jquery-ui-datepicker' );
+    // wp_register_style( 'jquery-ui', 'http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css' );
+    // wp_enqueue_style( 'jquery-ui' );  
 
 	}
 
@@ -96,8 +99,7 @@ class Days_Since_Counter_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/days-since-counter-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/days-since-counter-admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker' ), $this->version, false );
 	}
 	
 
