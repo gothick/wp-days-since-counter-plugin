@@ -14,9 +14,15 @@
 ?>
 
 <?php
+
 if (!current_user_can('manage_options')) {
 	wp_die(__('You do not have sufficient permissions to access this page.'));
 }
+?>
+
+<?php 
+// Meta boxes aren't normally added to settings pages, so we hook in manually.
+do_action('add_meta_boxes', $this->admin_page_hook_suffix);
 ?>
 
 <div class="wrap">
@@ -26,4 +32,10 @@ if (!current_user_can('manage_options')) {
     <?php do_settings_sections('days-since-counter-options'); ?>
     <?php submit_button(); ?>
   </form>
+  <h2><?php _e('Preview', 'days-since-counter'); ?></h2>
+  <div class="wrap metabox-holder">
+    <?php do_meta_boxes('foo', 'side' , NULL); ?>
+    <?php // TODO: Remove this debugging code ?>
+  </div>
+
 </div>
