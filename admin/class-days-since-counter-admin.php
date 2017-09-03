@@ -181,6 +181,7 @@ class Days_Since_Counter_Admin {
     }
     catch(\Exception $e) {
       // We'll just return null. That's fine.
+      add_settings_error(self::START_DATE_OPTION_NAME, self::START_DATE_OPTION_NAME, __('Invalid date specified.', 'days-since-counter'), 'error');
     }
     return ($output);
   }
