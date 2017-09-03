@@ -176,14 +176,20 @@ class Days_Since_Counter_Admin {
 
   public function sanitise_start_date($input) {
     $output = null;
-    try {
-      $output = new DateTime($input);
+
+    if (!is_a($input, 'DateTime')) {
+      try {
+        $output = new DateTime($input);
+      }
+      catch(\Exception $e) {
+        // We'll just return null. That's fine.
+        add_settings_error(self::START_DATE_OPTION_NAME, self::START_DATE_OPTION_NAME, __('Invalid date specified.', 'days-since-counter'), 'error');
+      }
+    } else {
+      // It's already a DateTime. Can't go too far wrong there.
+      $output = $input;
     }
-    catch(\Exception $e) {
-      // We'll just return null. That's fine.
-      add_settings_error(self::START_DATE_OPTION_NAME, self::START_DATE_OPTION_NAME, __('Invalid date specified.', 'days-since-counter'), 'error');
-    }
-    return ($output);
+    return $output;
   }
 
   public function render_main_option_group() {
