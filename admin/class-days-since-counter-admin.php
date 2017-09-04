@@ -105,7 +105,7 @@ class Days_Since_Counter_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-     add_meta_box('days-since-counter-count-meta-box', __('Day Counter', 'days-since-counter'), array($this, 'render_counter_meta_box'), array('post', 'foo'), 'side', 'high', null);
+     add_meta_box('days-since-counter-count-meta-box', __('Days Since Counter', 'days-since-counter'), array($this, 'render_counter_meta_box'), array('post', 'foo'), 'side', 'high', null);
 	}
 
   /**
