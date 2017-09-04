@@ -33,9 +33,9 @@ do_action('add_meta_boxes', $this->admin_page_hook_suffix);
     <?php submit_button(); ?>
   </form>
   <h2><?php _e('Preview', 'days-since-counter'); ?></h2>
-  <div class="wrap metabox-holder">
-    <?php do_meta_boxes('foo', 'side' , NULL); ?>
-    <?php // TODO: Remove this debugging code ?>
+  <div class="days-since-preview-box">
+    <div class="wrap metabox-holder">
+      <?php do_meta_boxes('foo', 'side' , NULL); ?>
+    </div>
   </div>
-
 </div>

@@ -160,11 +160,10 @@ class Days_Since_Counter_Admin {
     add_settings_section(
       'days-since-main-option-section', 
       __('Date Settings', 'days-since-counter'), 
-      array($this, 'render_main_option_group'), 
+      null, // No callback. Our options are rendered automatically through add_settings_field
       'days-since-counter-options' // page
     );
     
-    // TODO: Validation/sanitisation
     add_settings_field( 
       self::START_DATE_OPTION_NAME,  // id
       __('Start Date', 'days-since-counter'), // title
@@ -192,10 +191,6 @@ class Days_Since_Counter_Admin {
     return $output;
   }
 
-  public function render_main_option_group() {
-    // TODO 
-  }
-  
   public function render_start_date_option() {
     $start_date = get_option(self::START_DATE_OPTION_NAME, null);
     $params = array();
